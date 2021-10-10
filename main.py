@@ -30,27 +30,25 @@ def fib(n: int) -> np.ndarray:
     """
     output = np.ndarray(shape=(1, 2), dtype=int)
     output[0, 0], output[0, 1] = 0, 1
-    if n > 2:
-        output.resize((1, n))
-        output[0, 0], output[0, 1] = 0, 1
-        for i in range(2, n):
-            output[0, i] = output[0, i-1] + output[0, i-2]
+    if n < 0:
+        return None
+    else:
+        if n > 2:
+            output.resize((1, n))
+            output[0, 0], output[0, 1] = 0, 1
+            for i in range(2, n):
+                output[0, i] = output[0, i-1] + output[0, i-2]
     return output[0, :n]
 
 
-def matrix_calculations(a: float):
-    """Funkcja zwraca wartości obliczeń na macierzy stworzonej
-    na podstawie parametru a.
-    Szczegółowy opis w zadaniu 4.
-
-    Parameters:
-    a (float): wartość liczbowa
-
-    Returns:
-    touple: krotka zawierająca wyniki obliczeń
-    (Minv, Mt, Mdet) - opis parametrów w zadaniu 4.
-    """
-    return None
+def matrix_calculations(a: float) -> tuple:
+    array = np.array([[a, 1, -1],
+                    [0, 1, 1],
+                    [-a, a, 1]])
+    Minv = np.linalg.inv(array)
+    Mt = np.transpose(array)
+    Mdet = np.linalg.det(array)
+    return (Minv, Mt, Mdet)
 
 
 def custom_matrix(m: int, n: int):
@@ -66,4 +64,4 @@ def custom_matrix(m: int, n: int):
     """
     return None
 
-print(fib(50))
+print(matrix_calculations(1))
