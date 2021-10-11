@@ -62,6 +62,12 @@ def custom_matrix(m: int, n: int):
     Returns:
     np.ndarray: macierz zgodna z opisem z zadania 7.
     """
-    return None
+    matrix = np.zeros((m, n))
+    for ix, iy in np.ndindex(matrix.shape):
+        if ix > iy:
+            matrix[ix, iy] = ix
+        else:
+            matrix[ix, iy] = iy
+    return matrix
 
-print(matrix_calculations(1))
+print(custom_matrix(2, 5))
